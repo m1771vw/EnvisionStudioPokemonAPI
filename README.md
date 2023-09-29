@@ -59,14 +59,31 @@ If the dotnet-ef global tool is not installed on your system, you can install it
 ```
 dotnet tool install --global dotnet-ef
 ```
+Another alternative is to open the `EnvisionStudioPokemonAPI.sln` and in the `Package Manager Console` run `Update-Database`
+
 5. **Run the project:**
 To run the project, use the dotnet run command:
 
 ```
 dotnet run
 ```
-This will start your application, and you can access it by opening a web browser and navigating to http://localhost:44360.
+This will start your application, and you can access it by opening a web browser and navigating to http://localhost:44360 or https://localhost:7182.
+
+Another alternative is to open the `EnvisionStudioPokemonAPI.sln` and press F5 or press EnvisionStudioPokemonAPI at the top with the green button.
+
+You might have to select IISExpress and run it that way.
 
 6. **Access the application:**
-Once the application is running, open your web browser and go to http://localhost:44360 to access the application.
+Once the application is running, open your web browser and go to http://localhost:44360 or https://localhost:7182 to access the application.
 
+## Extra Notes
+
+Apologies in advance, I only worked on it for a couple days and probably spent maybe 8 to 12 hours on this. Never used Razor pages before so I had to pick it up as I went.
+
+There's no proper error handling and no loading animations. 
+
+Am open to discussing more about design choices in the future.
+
+Definitely made some shortcut decisions to make it work.
+
+Also not familiar with SQLITE so I don't know if the set up instructions are correct but hopefully the migration works fine.
