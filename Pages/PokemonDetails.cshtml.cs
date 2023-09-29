@@ -2,6 +2,7 @@ using EnvisionStudioPokemonAPI.Services;
 using EnvisionStudioPokemonAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Security.Claims;
 
 namespace EnvisionStudioPokemonAPI.Pages
 {
@@ -27,30 +28,49 @@ namespace EnvisionStudioPokemonAPI.Pages
         {
             try
             {
-                // Retrieve Pokemon details based on the PokemonId stored in the hidden input
+                var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+                var userId = "";
+                if (userIdClaim != null)
+                {
+                    userId = userIdClaim.Value;
+                }
                 var pokemonDetail = await _pokemonService.FetchPokemonDetail($"https://pokeapi.co/api/v2/pokemon/{pokemonName}/");
                 var favoritePokemon = new FavoritePokemon
                 {
-                    UserId = "1",
+                    UserId = userId,
                     Name = pokemonDetail.Name,
                     Height = pokemonDetail.Height,
-                    Order = pokemonDetail.Order, // Assuming you have this property in PokemonDetail
+                    Order = pokemonDetail.Order, 
                     Weight = pokemonDetail.Weight,
-                    Type1 = pokemonDetail.Types.FirstOrDefault()?.Type.Name, // Get the first type name
-                    Type2 = pokemonDetail.Types.Skip(1).FirstOrDefault()?.Type.Name // Get the second type name if available
+                    Type1 = pokemonDetail.Types.FirstOrDefault()?.Type.Name, 
+                    Type2 = pokemonDetail.Types.Count > 1 ? pokemonDetail.Types.Skip(1).First().Type.Name : null,
+                    Front_Sprite = pokemonDetail.Sprites.Front_Default,
+                    Back_Sprite = pokemonDetail.Sprites.Back_Default
                 };
 
-                // Call your service to add the Pokemon to favorites
                 await _favoritePokemonService.AddPokemonToFavoritesAsync(favoritePokemon);
 
-                // Redirect back to the Pokemon details page or another appropriate page
-                return RedirectToPage("PokemonDetails", new { pokemonName = pokemonDetail.Name });
+                return RedirectToPage("/FavoritePokemon");
             }
             catch (Exception ex)
             {
-                // Handle the error and display a message to the user
                 TempData["ErrorMessage"] = $"Failed to add Pokemon to favorites: {ex.Message}";
                 return Page();
+            }
+        }
+
+        public async Task<IActionResult> OnPostRemoveFromFavoriteAsync(string pokemonName)
+        {
+            try
+            {
+                await _favoritePokemonService.RemovePokemonFromFavoritesAsync(pokemonName);
+
+                return RedirectToPage("/FavoritePokemon");
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"Failed to remove Pokemon from favorites: {ex.Message}";
+                return RedirectToPage("/FavoritePokemon");
             }
         }
     }

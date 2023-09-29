@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Newtonsoft.Json;
+
 
 namespace EnvisionStudioPokemonAPI.Models
 {
@@ -48,14 +50,30 @@ namespace EnvisionStudioPokemonAPI.Models
     {
         [Key]
         public int Id { get; set; }
-        public string FrontDefault { get; set; }
-        public string FrontShiny { get; set; }
-        public string FrontFemale { get; set; }
-        public string FrontShinyFemale { get; set; }
-        public string BackDefault { get; set; }
-        public string BackShiny { get; set; }
-        public string BackFemale { get; set; }
-        public string BackShinyFemale { get; set; }
+
+        [JsonProperty("front_default")]
+        public string Front_Default { get; set; }
+
+        [JsonProperty("front_shiny")]
+        public string Front_Shiny { get; set; }
+
+        [JsonProperty("front_female")]
+        public string Front_Female { get; set; }
+
+        [JsonProperty("front_shiny_female")]
+        public string Front_Shiny_Female { get; set; }
+
+        [JsonProperty("back_default")]
+        public string Back_Default { get; set; }
+
+        [JsonProperty("back_shiny")]
+        public string Back_Shiny { get; set; }
+
+        [JsonProperty("back_female")]
+        public string Back_Female { get; set; }
+
+        [JsonProperty("back_shiny_female")]
+        public string Back_Shiny_Female { get; set; }
     }
 
     public class Ability
@@ -96,6 +114,6 @@ namespace EnvisionStudioPokemonAPI.Models
         public int Id { get; set; }
         public Stat Stat { get; set; }
         public int Effort { get; set; }
-        public int BaseStat { get; set; }
+        public int Base_Stat { get; set; }
     }
 }

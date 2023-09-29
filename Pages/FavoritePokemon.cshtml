@@ -1,0 +1,44 @@
+﻿@page "/favorites"
+@{
+    ViewData["Title"] = "Favorite Pokémon";
+}
+@model EnvisionStudioPokemonAPI.Pages.FavoritePokemonModel
+@functions {
+    public string ConvertToCamelCase(string input)
+    {
+        // Split the input string by hyphens and capitalize each word
+        var words = input.Split('-')
+                         .Select(word => char.ToUpper(word[0]) + word.Substring(1));
+        // Join the words back together without spaces
+        return string.Join(" ", words);
+    }
+}
+
+<h1>Favorite Pokémon</h1>
+
+<!-- Display the list of favorite Pokémon here -->
+<div class="pokemon-card-container">
+    @foreach (var pokemon in Model.FavoritePokemons)
+    {
+        <div class="pokemon-card">
+            <!-- Display sprites -->
+            <img class="pokemon-sprite" src="@pokemon.Front_Sprite" alt="Front Sprite" />
+
+            <!-- Display CamelCased name -->
+            <h2 class="pokemon-name">@ConvertToCamelCase(pokemon.Name)</h2>
+
+            <!-- Display other information as bullet points -->
+            <ul class="pokemon-info">
+                <li>Height: @pokemon.Height</li>
+                <li>Order: @pokemon.Order</li>
+                <li>Weight: @pokemon.Weight</li>
+                <li>
+                    Types: @pokemon.Type1 @if (!string.IsNullOrEmpty(pokemon.Type2))
+                    {
+                        <span>/ @pokemon.Type2</span>
+                    }
+                </li>
+            </ul>
+        </div>
+    }
+</div>

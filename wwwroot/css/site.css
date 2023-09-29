@@ -16,3 +16,182 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.card {
+    flex: 0 0 calc(20% - 1rem); /* Adjust the width to fit 5 cards per row */
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+    overflow: hidden;
+}
+
+    .card a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+.card-body {
+    padding: 1rem;
+}
+
+.card-title {
+    text-transform: capitalize; /* Capitalize the first letter */
+}
+
+.pagination {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+    .pagination a, .pagination span {
+        display: inline-block;
+        padding: 5px 10px;
+        margin: 2px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        text-decoration: none;
+        background-color: #f0f0f0;
+        color: #333;
+    }
+
+        .pagination a:hover {
+            background-color: #ddd;
+        }
+
+    .pagination .active {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+    /* CSS for displaying moves in a row with flexbox */
+.move-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 10px;
+    list-style: none;
+}
+
+/* Style for each move item */
+.move-list li {
+    flex: 0 0 calc(20% - 10px); /* Adjust the width based on the number of items per row */
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 5px;
+    text-align: center;
+}
+
+.ability-list {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+    list-style: none;
+}
+
+.ability-list li {
+    flex: 0 0 calc(20% - 10px); /* Adjust the width based on the number of items per row */
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 5px;
+    text-align: center;
+}
+
+.pokemon-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.pokemon-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.sprites {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.abilities-types-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.ability-stats {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.ability-list {
+    list-style: none;
+    padding: 0;
+}
+
+.move-list {
+    list-style: none;
+    padding: 0;
+}
+
+/* Style for the Pokémon card container */
+.pokemon-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+/* Style for the Pokémon cards */
+.pokemon-card {
+    flex-basis: calc(20% - 20px); /* 20% width with margin */
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Style for the Pokémon sprite */
+.pokemon-sprite {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+/* Style for the Pokémon name */
+.pokemon-name {
+    text-transform: capitalize; /* CamelCase */
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+/* Style for the Pokémon information list */
+.pokemon-info {
+    padding: 0;
+    margin: 0;
+    list-style-type: none; /* Remove bullets */
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .pokemon-card-container {
+        flex-direction: column; /* Stack cards in a single column */
+        align-items: center;
+    }
+
+    .pokemon-card {
+        flex-basis: calc(50% - 20px); /* 50% width with margin */
+    }
+}
