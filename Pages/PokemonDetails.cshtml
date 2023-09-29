@@ -1,0 +1,8 @@
+﻿@page "/details/{pokemonName}"
+@model EnvisionStudioPokemonAPI.Pages.PokemonDetailsModel
+@{
+}
+
+<h1>@Model.PokemonName</h1>
+<p>@Model.PokemonDetail.BaseExperience</p>
+<p>@Model.PokemonDetail.Abilities.FirstOrDefault().Ability.Name</p>

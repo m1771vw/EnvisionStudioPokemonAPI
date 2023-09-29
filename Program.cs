@@ -1,9 +1,11 @@
+using EnvisionStudioPokemonAPI.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddHttpClient();
-//builder.Services.AddScoped<PokemonService>();
+builder.Services.AddScoped<PokemonService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
