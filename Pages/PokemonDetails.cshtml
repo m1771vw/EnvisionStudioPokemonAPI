@@ -3,6 +3,60 @@
 @{
 }
 
-<h1>@Model.PokemonName</h1>
-<p>@Model.PokemonDetail.BaseExperience</p>
-<p>@Model.PokemonDetail.Abilities.FirstOrDefault().Ability.Name</p>
+<h1>@Model.PokemonDetail.Name</h1>
+<p>Base Experience: @Model.PokemonDetail.BaseExperience</p>
+
+<!-- Display Abilities -->
+<h2>Abilities:</h2>
+<ul>
+    @foreach (var ability in Model.PokemonDetail.Abilities)
+    {
+        <li>@ability.Ability.Name</li>
+    }
+</ul>
+
+<!-- Display Moves -->
+<h2>Moves:</h2>
+<ul>
+    @foreach (var move in Model.PokemonDetail.Moves)
+    {
+        <li>@move.Move.Name</li>
+    }
+</ul>
+
+<!-- Display Sprites -->
+<h2>Sprites:</h2>
+<img src="@Model.PokemonDetail.Sprites.FrontDefault" alt="Front Default Sprite">
+<img src="@Model.PokemonDetail.Sprites.BackDefault" alt="Back Default Sprite">
+
+<!-- Display Stats -->
+<h2>Stats:</h2>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Value</th>
+    </tr>
+    @foreach (var stat in Model.PokemonDetail.Stats)
+    {
+        <tr>
+            <td>@stat.Stat.Name</td>
+            <td>@stat.BaseStat</td>
+        </tr>
+    }
+</table>
+
+<!-- Display Types -->
+<h2>Types:</h2>
+<ul>
+    @foreach (var type in Model.PokemonDetail.Types)
+    {
+        <li>@type.Type.Name</li>
+    }
+</ul>
+
+<!-- Add a button to add to favorites -->
+<form method="post" asp-page-handler="AddToFavorite">
+    <input type="hidden" name="pokemonId" value="@Model.PokemonDetail.Id" />
+    <button type="submit">Add to Favorites</button>
+</form>
+

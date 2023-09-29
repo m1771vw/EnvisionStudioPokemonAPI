@@ -1,4 +1,6 @@
+using EnvisionStudioPokemonAPI.Data;
 using EnvisionStudioPokemonAPI.Services;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +8,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddHttpClient();
 builder.Services.AddScoped<PokemonService>();
+builder.Services.AddScoped<FavoritePokemonService>();
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
